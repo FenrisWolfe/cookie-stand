@@ -21,7 +21,9 @@ var alkiTR = document.getElementById ('alki');
 var hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ]
 
 // Constructor will go here
-function CookieStore (tableElement,name, minCust, maxCust, avgCookiesPerSale) {
+function CookieStore (tableElement, name, minCust, maxCust, avgCookiesPerSale) {
+  this.salesResults = [];
+  this.grabBag = 0;
   this.tableElement = tableElement;
   this.name = name;
   this.minCust = minCust;
@@ -29,9 +31,18 @@ function CookieStore (tableElement,name, minCust, maxCust, avgCookiesPerSale) {
   this.hoursOpen = hoursOpen;
   this.avgCookiesPerSale = avgCookiesPerSale;
 }
-
+// random customer number generator
 CookieStore.prototype.ranCustNum = function () {
-  return Math.floor(math.random() * (this.maxCust - this.minCust +1)) + this.minCust;
+  return Math.floor(Math.random() * (this.maxCust - this.minCust +1)) + this.minCust;
+};
+
+//random cookie sales generator
+CookieStore.prototype.hourlyCookies = function () {
+  for (var i = 0; i < hoursOpen.length; i++) {
+    var totalHourlyCookies = Math.floor(this.avgCookiesPerSale * this.ranCustNum());
+    this.salesResults.push(totalHourlyCookies);
+    this.grabBag = totalHourlyCookies + this.grabBag;
+  }
 };
 
 
