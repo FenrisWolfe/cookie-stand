@@ -1,6 +1,6 @@
 'use strict';
 //lint names undefined warning killers
-// var document;
+var document;
 // var alert;
 // var console;
 //random number generator
@@ -44,10 +44,40 @@ CookieStore.prototype.hourlyCookies = function () {
     this.grabBag = totalHourlyCookies + this.grabBag;
   }
 };
+//lets create the stores' framework
+CookieStore.prototype.render = function() {
+  var cookieStoreCell;
+  //create the table row
+  var addRow = document.createElement('tr');
+  this.tableElement = addRow;
+  //create the table data
+  var locationHeader = document.createElement('td');
+  locationHeader.textContent = this.name;
+  this.tableElement.appendChild(locationHeader);
+  //create table cells for the 15 hours the stores are open for
+  for (var i = 0; i < 15; i++) {
+    cookieStoreCell = document.createElement('td');
+    cookieStoreCell.textContent = this.salesResults[i];
+    this.tableElement.appendChild(cookieStoreCell);
+  }
+  var newTable = document.getElementById('sales_report');
+  newTable.appendChild(this.tableElement);
+};
 
-
+//cookie stores and their data and random cookies calls
 var firstAndPike = new CookieStore (firstAndPikeTR, '1st and Pike', 23, 65, 6.3);
+firstAndPike.hourlyCookies();
+firstAndPike.render();
+
 var seaTac = new CookieStore (seaTacTR, 'Sea Tac Airport', 3, 24, 1.2);
+seaTac.hourlyCookies();
+seaTac.render();
+
 var seattleCenter = new CookieStore (seattleCenterTR, 'Seattle Center', 11, 38, 3.7);
+seattleCenter.hourlyCookies();
+seattleCenter.render();
+
 var capitolHill = new CookieStore (capitolHillTR, 'Capitol Hill', 20, 38, 2.3);
 var alki = new CookieStore (alkiTR, 'Alki', 2, 16, 4.6);
+alki.hourlyCookies();
+alki.render();
