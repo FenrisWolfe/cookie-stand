@@ -1,5 +1,5 @@
 'use strict';
-//lint names undefined warning killers
+//linter names undefined warning killers
 var document;
 // var alert;
 // var console;
@@ -63,18 +63,6 @@ CookieStore.prototype.render = function() {
   var newTable = document.getElementById('sales_report');
   newTable.appendChild(this.tableElement);
 };
-//create a new table
-function tableAdd() {
-  var newElement;
-  for (var i = 0; i < 16; i++) {
-    newElement = document.createElement('tr');
-    newElement.textContent = this.salesResults[i];
-    this.tableElement.appendChild(newElement);
-  }
-}
-
-// tableAdd();
-
 //create table header
 function tableHeaderAdd() {
   var hoursOpenCell;
