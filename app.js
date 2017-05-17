@@ -20,7 +20,7 @@ var alkiTR = document.getElementById ('alki');
 //hours table array
 var hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ]
 
-// Objects will go here
+// Constructor will go here
 function CookieStore (tableElement,name, minCust, maxCust, avgCookiesPerSale) {
   this.tableElement = tableElement;
   this.name = name;
@@ -30,6 +30,9 @@ function CookieStore (tableElement,name, minCust, maxCust, avgCookiesPerSale) {
   this.avgCookiesPerSale = avgCookiesPerSale;
 }
 
+CookieStore.prototype.ranCustNum = function () {
+  return Math.floor(math.random() * (this.maxCust - this.minCust +1)) + this.minCust;
+};
 
 
 var firstAndPike = new CookieStore (firstAndPikeTR, '1st and Pike', 23, 65, 6.3);
