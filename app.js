@@ -1,83 +1,101 @@
 'use strict';
-//lint names undefined warning killers
+//linter names undefined warning killers
 var document;
-// Objects will go here
-var storeZero = {
-  strNameZero: '1st and Pike',
-  minCustZero: 23,
-  maxCustZero: 65,
-  avgCookiePerSaleZero: 6.3
+// var alert;
+// var console;
+//random number generator
+// function ranNumGen(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
+//displays the random number in a pop-up
+// alert ('the number is ' + ranNumGen(5, 99));
+
+//
+var firstAndPikeTR = document.getElementById ('firstAndPike');
+var seaTacTR = document.getElementById ('seaTac');
+var seattleCenterTR = document.getElementById ('seattleCenter');
+var capitolHillTR = document.getElementById ('capitolHill');
+var alkiTR = document.getElementById ('alki');
+
+//hours table array
+var hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ];
+
+// Constructor will go here
+function CookieStore (tableElement, name, minCust, maxCust, avgCookiesPerSale) {
+  this.salesResults = [];
+  this.grabBag = 0;
+  this.tableElement = tableElement;
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.hoursOpen = hoursOpen;
+  this.avgCookiesPerSale = avgCookiesPerSale;
+}
+// random customer number generator
+CookieStore.prototype.ranCustNum = function () {
+  return Math.floor(Math.random() * (this.maxCust - this.minCust +1)) + this.minCust;
 };
 
-var storeOne = {
-  strNameOne: 'SeaTac Airport',
-  minCustOne: 3,
-  maxCustOne: 24,
-  avgCookiePerSaleOne: 1.2
+//random cookie sales generator 1st and pike is REALLY busy!
+CookieStore.prototype.hourlyCookies = function () {
+  for (var i = 0; i < hoursOpen.length; i++) {
+    var totalHourlyCookies = Math.floor(this.avgCookiesPerSale * this.ranCustNum());
+    this.salesResults.push(totalHourlyCookies);
+    this.grabBag = totalHourlyCookies + this.grabBag;
+  }
 };
+//lets create the stores' framework
+CookieStore.prototype.render = function() {
+  var cookieStoreCell;
+  //create the table row
+  var addRow = document.createElement('tr');
+  this.tableElement = addRow;
+  //create the table data
+  var locationHeader = document.createElement('td');
+  locationHeader.textContent = this.name;
+  this.tableElement.appendChild(locationHeader);
+  //create table cells for the 15 hours the stores are open for
+  for (var i = 0; i < 15; i++) {
+    cookieStoreCell = document.createElement('td');
+    cookieStoreCell.textContent = this.salesResults[i];
+    this.tableElement.appendChild(cookieStoreCell);
+  }
+  var newTable = document.getElementById('sales_report');
+  newTable.appendChild(this.tableElement);
+};
+//create table header
+function tableHeaderAdd() {
+  var hoursOpenCell;
+  var addRow = document.createElement('tr');
+  var addHead = document.createElement('th');
+  addRow.appendChild(addHead);
+  for (var i = 0; i < 15; i++) {
+    hoursOpenCell = document.createElement('th');
+    hoursOpenCell.textContent = hoursOpen[i];
+    addRow.appendChild(hoursOpenCell);
+  }
+  var newTable = document.getElementById('sales_report');
+  newTable.appendChild(addRow);
+}
+//calls the tableHeaderAdd function
+tableHeaderAdd();
+//cookie stores and their data and random cookies calls
+var firstAndPike = new CookieStore (firstAndPikeTR, '1st and Pike', 23, 65, 6.3);
+firstAndPike.hourlyCookies();
+firstAndPike.render();
 
-var storeTwo = {
-  strNameTwo: 'Seattle Center',
-  minCustTwo: 11,
-  maxCustTwo: 38,
-  avgCookiePerSaleTwo: 3.7
-};
+var seaTac = new CookieStore (seaTacTR, 'Sea Tac Airport', 3, 24, 1.2);
+seaTac.hourlyCookies();
+seaTac.render();
 
-var storeThree = {
-  strNameThree: 'Capitol Hill',
-  minCustThree: 20,
-  maxCustThree: 38,
-  avgCookiePerSaleThree: 2.3
-};
+var seattleCenter = new CookieStore (seattleCenterTR, 'Seattle Center', 11, 38, 3.7);
+seattleCenter.hourlyCookies();
+seattleCenter.render();
 
-var storeFour = {
-  strNameFour: 'Alki',
-  minCustFour: 2,
-  maxCustFour: 16,
-  avgCookiePerSaleFour: 4.6
-};
-//first store
-var eleStoreZero = document.getElementById('strNameZero');
-eleStoreZero.textContent = storeZero.strNameZero;
-var eleMinZero = document.getElementById('minCustZero');
-eleMinZero.textContent = storeZero.minCustZero;
-var eleMaxZero= document.getElementById('maxCustZero');
-eleMaxZero.textContent = storeZero.maxCustZero;
-var eleAvgZero = document.getElementById('avgCookiePerSaleZero');
-eleAvgZero.textContent = storeZero.avgCookiePerSaleZero;
-//second store
-var eleStoreOne = document.getElementById('strNameOne');
-eleStoreOne.textContent = storeOne.strNameOne;
-var eleMinOne = document.getElementById('minCustOne');
-eleMinOne.textContent = storeOne.minCustOne;
-var eleMaxOne= document.getElementById('maxCustOne');
-eleMaxOne.textContent = storeOne.maxCustOne;
-var eleAvgOne = document.getElementById('avgCookiePerSaleOne');
-eleAvgOne.textContent = storeOne.avgCookiePerSaleOne;
-//third store
-var eleStoreTwo = document.getElementById('strNameTwo');
-eleStoreTwo.textContent = storeTwo.strNameTwo;
-var eleMinTwo = document.getElementById('minCustTwo');
-eleMinTwo.textContent = storeTwo.minCustTwo;
-var eleMaxTwo = document.getElementById('maxCustTwo');
-eleMaxTwo.textContent = storeTwo.maxCustTwo;
-var eleAvgTwo = document.getElementById('avgCookiePerSaleTwo');
-eleAvgTwo.textContent = storeTwo.avgCookiePerSaleTwo;
-//fourth store
-var eleStoreThree = document.getElementById('strNameThree');
-eleStoreThree.textContent = storeThree.strNameThree;
-var eleMinThree = document.getElementById('minCustThree');
-eleMinThree.textContent = storeThree.minCustThree;
-var eleMaxThree= document.getElementById('maxCustThree');
-eleMaxThree.textContent = storeThree.maxCustThree;
-var eleAvgThree = document.getElementById('avgCookiePerSaleThree');
-eleAvgThree.textContent = storeThree.avgCookiePerSaleThree;
-//fifth store
-var eleStoreFour = document.getElementById('strNameFour');
-eleStoreFour.textContent = storeFour.strNameFour;
-var eleMinFour = document.getElementById('minCustFour');
-eleMinFour.textContent = storeFour.minCustFour;
-var eleMaxFour= document.getElementById('maxCustFour');
-eleMaxFour.textContent = storeFour.maxCustFour;
-var eleAvgFour = document.getElementById('avgCookiePerSaleFour');
-eleAvgFour.textContent = storeFour.avgCookiePerSaleFour;
+var capitolHill = new CookieStore (capitolHillTR, 'Capitol Hill', 20, 38, 2.3);
+capitolHill.hourlyCookies();
+capitolHill.render();
+
+var alki = new CookieStore (alkiTR, 'Alki', 2, 16, 4.6);
+alki.hourlyCookies();
+alki.render();
