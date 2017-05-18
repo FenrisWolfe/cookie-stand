@@ -7,3 +7,10 @@ td {
   padding: 20px;
   border: dotted 1px black;
 }
+
+p {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
