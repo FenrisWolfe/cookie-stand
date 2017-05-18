@@ -108,3 +108,25 @@ capitolHill.render();
 var alki = new CookieStore (alkiTR, 'Alki', 2, 16, 4.6);
 alki.hourlyCookies();
 alki.render();
+//create new store function creating a button
+function buttonNewLocation() {
+  event.preventDefault();
+  //new store info
+  var form = event.target;
+  var addNewCookieStore = form.addNewCookieStore.value;
+  var minCust = form.minCust.value;
+  var maxCust = form.maxCust.value;
+  var hourlyCookies = form.hourlyCookies.value;
+  //return the values to fill the strings
+  form.addNewCookieStore.value = '';
+  form.minCust.value = '';
+  form.maxCust.value = '';
+  form.hourlyCookies.value = '';
+  //now the store Constructor
+  var newLocation = new CookieStore(addNewCookieStore, minCust, maxCust, hourlyCookies);
+  newLocation.hourlyCookies();
+  newLocation.render();
+}
+
+var newStoreForm = document.getElementById('add_new_store');
+newStoreForm.addEventListener('submit', buttonNewLocation);
