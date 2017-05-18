@@ -6,6 +6,7 @@ body {
 td {
   padding: 20px;
   border: dotted 1px black;
+<<<<<<< HEAD
 }
 
 p {
@@ -13,4 +14,6 @@ p {
   animation-name: slidein;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+=======
+>>>>>>> 519f9b5e16f27c96043ddb5a4bffd154475f4e94
 }

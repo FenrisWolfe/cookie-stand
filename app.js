@@ -44,6 +44,7 @@ CookieStore.prototype.hourlyCookies = function () {
     this.grabBag = totalHourlyCookies + this.grabBag;
   }
 };
+
 //lets create the stores' framework
 CookieStore.prototype.render = function() {
   var cookieStoreCell;
@@ -63,6 +64,7 @@ CookieStore.prototype.render = function() {
   var newTable = document.getElementById('sales_report');
   newTable.appendChild(this.tableElement);
 };
+
 //create table header
 function tableHeaderAdd() {
   var hoursOpenCell;
@@ -79,6 +81,7 @@ function tableHeaderAdd() {
 }
 //calls the tableHeaderAdd function
 tableHeaderAdd();
+
 //create a table footer
 function tableFooterAdd() {
   var hoursOpenCell;
