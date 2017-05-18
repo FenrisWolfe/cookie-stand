@@ -79,6 +79,15 @@ function tableHeaderAdd() {
 }
 //calls the tableHeaderAdd function
 tableHeaderAdd();
+//create a table footer
+// function tableFooterAdd() {
+//   var table = document.getElementById('foot');
+//   var footer = table.makeTabFoot();
+//   var row = footer.insertRow(6);
+//   var cell = row.insertCell(6);
+//   cell.innerHTML = '<b>Did this Footer Work?</b>';
+// }
+// tableFooterAdd();
 //cookie stores and their data and random cookies calls
 var firstAndPike = new CookieStore (firstAndPikeTR, '1st and Pike', 23, 65, 6.3);
 firstAndPike.hourlyCookies();
