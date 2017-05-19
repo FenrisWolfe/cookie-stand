@@ -1,19 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+#spacer{
+  width: auto;
+}
+html{
+  position: relative;
+  background-color: #D9415D;
+  margin-left: auto;
+  margin-right: auto;
+  width: 980px;
+  height: 630px;
+  outline: dotted 1px cyan;
+}
 body {
-  width: 1024px;
-  height: auto;
+background-color: #FCAB8E;
 }
 
-td {
-  padding: 20px;
-  border: dotted 1px black;
-<<<<<<< HEAD
+section {
+  background-color: #D9736A;
+  margin-left: auto;
+  margin-right: auto;
+  width: 900px;
+  height: 610px;
+  outline: dotted 1px green;
 }
 
-p {
-  animation-duration: 3s;
-  animation-name: slidein;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-=======
->>>>>>> 519f9b5e16f27c96043ddb5a4bffd154475f4e94
+.header {
+  text-align: center;
+  font-family: fantasy;
+  font-size: 60px;
+}
+
+.left {
+  position: relative;
+  width: 100px;
+  height: 610px;
+  float: left;
+  background: #EC7881;
+}
+
+.right {
+  position: relative;
+  width: 100px;
+  height: 610px;
+  float: right;
+  background: #EC7881;
+}
+
+.logo{
+  display: inline;
+width: 451px;
+}
+
+.fish {
+  display: block;
+    padding: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 450px;
+    height: 120px;
+    outline: dotted 1px #0e0e0e;
+}
+
+img{
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+
+}
+
+#link {
+  margin-bottom: 100%;
 }
